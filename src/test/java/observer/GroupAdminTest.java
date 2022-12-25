@@ -2,7 +2,7 @@ package observer;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GroupAdminTest {
 
@@ -17,7 +17,7 @@ class GroupAdminTest {
     @Test
     void insert() {
         UndoableStringBuilder ins = new UndoableStringBuilder();
-        ins.append("to be or not to be");
+        ins.append("Testing the insert method");
         assertThrows(StringIndexOutOfBoundsException.class, () -> {
             ins.insert(100, "Testing");
         });
@@ -38,7 +38,7 @@ class GroupAdminTest {
     @Test
     void delete() {
         UndoableStringBuilder del = new UndoableStringBuilder();
-        del.append("Trying to see if delete func working");
+        del.append("Trying to see if delete func working well");
         assertThrows(StringIndexOutOfBoundsException.class, () -> {
             del.delete(-1, 3);
         });
@@ -54,5 +54,8 @@ class GroupAdminTest {
 
     @Test
     void undo() {
+//        assertThrows(EmptyStackException.class, () ->{
+//
+//        })
     }
 }

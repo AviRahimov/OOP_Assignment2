@@ -6,8 +6,8 @@ package observer;
  */
 public class ConcreteMember implements Member{
     private UndoableStringBuilder stringBuilder;
-    public ConcreteMember(UndoableStringBuilder str){
-        this.stringBuilder = str;
+    public ConcreteMember(GroupAdmin admin){
+        this.stringBuilder = admin.getCondition();
     }
 
     /**
@@ -18,5 +18,12 @@ public class ConcreteMember implements Member{
     @Override
     public void update(UndoableStringBuilder usb) {
         stringBuilder = usb;
+    }
+
+    @Override
+    public String toString() {
+        return "ConcreteMember{" +
+                "stringBuilder=" + stringBuilder +
+                '}';
     }
 }

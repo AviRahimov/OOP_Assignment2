@@ -45,10 +45,8 @@ public class GroupAdmin implements Sender{
      */
     @Override
     public void insert(int offset, String obj) {
-        condition = condition.insert(offset, obj);
-        for (Member member : members){
-            member.update(condition);
-        }
+        condition.insert(offset, obj);
+
     }
 
     /**
@@ -59,10 +57,8 @@ public class GroupAdmin implements Sender{
      */
     @Override
     public void append(String obj) {
-        condition = condition.append(obj);
-        for (Member member : members){
-            member.update(condition);
-        }
+        condition.append(obj);
+        notifyMember();
     }
     /**
      *
@@ -74,10 +70,8 @@ public class GroupAdmin implements Sender{
 
     @Override
     public void delete(int start, int end) {
-        condition = condition.delete(start, end);
-        for (Member member : members){
-            member.update(condition);
-        }
+        condition.delete(start, end);
+        notifyMember();
     }
 
     /**
@@ -87,8 +81,26 @@ public class GroupAdmin implements Sender{
     @Override
     public void undo() {
         condition.undo();
+        notifyMember();
+    }
+    private void notifyMember() {
         for (Member member : members){
             member.update(condition);
         }
+    }
+    public void setMembers(ArrayList<Member> members) {
+        this.members = members;
+    }
+
+    public void setCondition(UndoableStringBuilder condition) {
+        this.condition = condition;
+    }
+
+    public ArrayList<Member> getMembers() {
+        return members;
+    }
+
+    public UndoableStringBuilder getCondition() {
+        return condition;
     }
 }
