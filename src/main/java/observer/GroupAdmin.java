@@ -14,7 +14,7 @@ public class GroupAdmin implements Sender{
     private ArrayList<Member> members;
 
     public GroupAdmin() {
-        this.members = new ArrayList<>();
+        this.members = new ArrayList<Member>();
         this.condition = new UndoableStringBuilder();
     }
 
@@ -25,7 +25,9 @@ public class GroupAdmin implements Sender{
      */
     @Override
     public void register(Member obj) {
-        this.members.add(obj);
+        if(!(members.contains(obj))){
+            this.members.add(obj);
+        }
     }
 
     /**

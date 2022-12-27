@@ -6,8 +6,11 @@ package observer;
  */
 public class ConcreteMember implements Member{
     private UndoableStringBuilder stringBuilder;
-    public ConcreteMember(GroupAdmin admin){
-        this.stringBuilder = admin.getCondition();
+    private String member_name;
+
+    public ConcreteMember(String member_name){
+        this.member_name = member_name;
+        this.stringBuilder = new UndoableStringBuilder();
     }
 
     /**
@@ -18,6 +21,7 @@ public class ConcreteMember implements Member{
     @Override
     public void update(UndoableStringBuilder usb) {
         stringBuilder = usb;
+        System.out.println("The member updated successfully");
     }
 
     @Override

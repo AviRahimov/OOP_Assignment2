@@ -2,16 +2,30 @@ package observer;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 class GroupAdminTest {
 
     @Test
     void register() {
+        GroupAdmin reg = new GroupAdmin();
+        ConcreteMember member1 = new ConcreteMember("member1");
+        reg.register(member1);
+        for (Member members : reg.getMembers()){
+            assertEquals(members, member1);
+        }
     }
 
     @Test
     void unregister() {
+        GroupAdmin reg = new GroupAdmin();
+        ConcreteMember member2 = new ConcreteMember("member2");
+        reg.register(member2);
+        reg.unregister(member2);
+        for (Member members : reg.getMembers()){
+
+        }
     }
 
     @Test

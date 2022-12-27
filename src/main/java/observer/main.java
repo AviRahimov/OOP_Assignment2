@@ -1,17 +1,19 @@
 package observer;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class main {
-    public static void main(String[] args){
-//        GroupAdmin admin = new GroupAdmin();
-//        UndoableStringBuilder str = new UndoableStringBuilder();
-//        str.append("member1");
-//        admin.setCondition(str);
-//        ConcreteMember concrete = new ConcreteMember(new UndoableStringBuilder().append("what"));
-////        ArrayList<Member> members = new ArrayList<>();
-////        members.add(new ConcreteMember(str));
-////        admin.setMembers(members);
-//        admin.append("the f");
-//        System.out.println(concrete);
+    public static void main(String[] args) {
+        ConcreteMember m1 = new ConcreteMember("avi");
+        ConcreteMember m2 = new ConcreteMember("avi");
+        ConcreteMember ptr = m1;
+
+
+        assertEquals(m1, ptr);
+
+        if (m1 == m2) {
+            System.out.println("error!!!!!!");
+        }
     }
 
 }
