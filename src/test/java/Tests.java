@@ -1,3 +1,5 @@
+import observer.ConcreteMember;
+import observer.GroupAdmin;
 import org.junit.jupiter.api.Test;
 import org.junit.platform.commons.logging.Logger;
 import org.junit.platform.commons.logging.LoggerFactory;
@@ -7,15 +9,41 @@ public class Tests {
     // stub method to check external dependencies compatibility
     @Test
     public void test(){
-        String s1 = "Alice";
-        String s2 = "Bob";
+        GroupAdmin admin_test = new GroupAdmin();
+        ConcreteMember member1 = new ConcreteMember("m1");
+        ConcreteMember member2 = new ConcreteMember("m2");
+        ConcreteMember member3 = new ConcreteMember("m3");
 
-        logger.info(()->JvmUtilities.objectFootprint(s1));
+        /*
+         We can see that the memoryStats function is a combination of
+         objectFootprint function and the objectTotalSize function so, we use sometimes in this function
+         and, sometimes we use the two functions.
+        */
+        logger.info(()->JvmUtilities.objectFootprint(admin_test, member1, member2, member3));
 
-        logger.info(()->JvmUtilities.objectFootprint(s1,s2));
+        logger.info(()->JvmUtilities.objectTotalSize(admin_test, member1, member2, member3));
 
-        logger.info(()->JvmUtilities.objectTotalSize(s1));
+        admin_test.register(member1);
+        admin_test.register(member2);
+        admin_test.register(member3);
 
-        logger.info(() -> JvmUtilities.jvmInfo());
+        logger.info(()->JvmUtilities.objectFootprint(admin_test, member1, member2, member3));
+
+        logger.info(()->JvmUtilities.objectTotalSize(admin_test, member1, member2, member3));
+
+        admin_test.append("Testing");
+
+        logger.info(()->JvmUtilities.objectFootprint(admin_test, member1, member2, member3));
+
+        logger.info(()->JvmUtilities.objectTotalSize(admin_test, member1, member2, member3));
+
+        // Unregistered some members to see how it affects on admin_test
+        admin_test.unregister(member1);
+
+        logger.info(()->JvmUtilities.memoryStats(admin_test));
+
+        admin_test.unregister(member2);
+
+        logger.info(()->JvmUtilities.memoryStats(admin_test));
     }
 }

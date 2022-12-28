@@ -26,8 +26,12 @@ public class ConcreteMember implements Member{
 
     @Override
     public String toString() {
-        return "ConcreteMember{" +
+        return "ConcreteMember{" + "name=" + member_name +
                 "stringBuilder=" + stringBuilder +
                 '}';
+    }
+
+    public UndoableStringBuilder getUSB() {
+        return stringBuilder;
     }
 }

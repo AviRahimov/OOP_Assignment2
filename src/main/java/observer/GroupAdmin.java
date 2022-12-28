@@ -14,7 +14,7 @@ public class GroupAdmin implements Sender{
     private ArrayList<Member> members;
 
     public GroupAdmin() {
-        this.members = new ArrayList<Member>();
+        this.members = new ArrayList<>();
         this.condition = new UndoableStringBuilder();
     }
 
@@ -27,6 +27,7 @@ public class GroupAdmin implements Sender{
     public void register(Member obj) {
         if(!(members.contains(obj))){
             this.members.add(obj);
+            System.out.println("Added new member");
         }
     }
 
@@ -37,7 +38,10 @@ public class GroupAdmin implements Sender{
      */
     @Override
     public void unregister(Member obj) {
-        this.members.remove(obj);
+        if(members.contains(obj)) {
+            this.members.remove(obj);
+            System.out.println("Removed member");
+        }
     }
 
     /**
@@ -48,7 +52,7 @@ public class GroupAdmin implements Sender{
     @Override
     public void insert(int offset, String obj) {
         condition.insert(offset, obj);
-
+        notifyMember();
     }
 
     /**
@@ -90,14 +94,6 @@ public class GroupAdmin implements Sender{
             member.update(condition);
         }
     }
-    public void setMembers(ArrayList<Member> members) {
-        this.members = members;
-    }
-
-    public void setCondition(UndoableStringBuilder condition) {
-        this.condition = condition;
-    }
-
     public ArrayList<Member> getMembers() {
         return members;
     }
