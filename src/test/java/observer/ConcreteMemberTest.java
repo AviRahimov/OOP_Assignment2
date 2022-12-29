@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ConcreteMemberTest {
+    /**
+     * We are testing the update method by registering some member to the GroupAdmin and then delete
+     * some part of the UndoableStringBuilder of GroupAdmin and check if the member changed accordingly.
+     */
     @Test
     void update(){
         GroupAdmin admin = new GroupAdmin();

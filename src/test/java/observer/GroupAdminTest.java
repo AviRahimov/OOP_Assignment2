@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class GroupAdminTest {
 
+    /**
+     * testing the register function by registering 10 different members and check if the arraylist in the GroupAdmin
+     * that holds the members contains all the members.
+     */
     @Test
     void register() {
         GroupAdmin reg = new GroupAdmin();
@@ -21,6 +25,10 @@ class GroupAdminTest {
         }
     }
 
+    /**
+     * testing the register function by registering 4 different members and check if the arraylist in the GroupAdmin
+     * that holds the members is empty after unregistering all the members that registered.
+     */
     @Test
     void unregister() {
         // creating new CMs to register and unregister from GA
@@ -48,6 +56,10 @@ class GroupAdminTest {
         assertTrue(adm.getMembers().isEmpty());
     }
 
+    /**
+     * testing the insert function by inserting a string to the UndoableStringBuilder and check a bound cases
+     * which it means that in some cases the insert function will fail e.g. insert null.
+     */
     @Test
     void insert() {
         UndoableStringBuilder ins = new UndoableStringBuilder();
@@ -59,6 +71,12 @@ class GroupAdminTest {
         assertThrows(StringIndexOutOfBoundsException.class, () -> ins.insert(1, null));
     }
 
+    /**
+     * testing the append by the update method because there is no testing method for the append
+     * function, all string append is good so, we use the update method to check the update by appending some string
+     * to the UndoableStringBuilder. Registering 4 members and append a random string to the UndoableStringBuilder
+     * of the GroupAdmin and see if the members updated successfully.
+     */
     @Test
     void append() {
         // creating CM to register in GA
@@ -98,6 +116,11 @@ class GroupAdminTest {
         }
     }
 
+    /**
+     * testing the delete function by deleting a string from the UndoableStringBuilder by specific indexes
+     * and check a bound cases which it means that in some cases the insert function will fail
+     * e.g. delete in negative number.
+     */
     @Test
     void delete() {
         UndoableStringBuilder del = new UndoableStringBuilder();
@@ -109,6 +132,11 @@ class GroupAdminTest {
         assertThrows(StringIndexOutOfBoundsException.class, () -> del.delete(10, 3));
     }
 
+    /**
+     *testing the undo function by registering a new member to the collection of members and do some changes on
+     * the UndoableStringBuilder then undo 3 times and see if the UndoableStringBuilder returned to the first
+     * UndoableStringBuilder we created.
+     */
     @Test
     void undo() {
         // creating CM to register
