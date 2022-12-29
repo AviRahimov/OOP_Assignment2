@@ -9,17 +9,27 @@ import java.util.ArrayList;
  *  2) Collections of members that need to be notified when
  *  changing the UndoableStringBuilder.
  */
-public class GroupAdmin implements Sender{
+public class GroupAdmin implements Sender {
+    /**
+     * USB object for GA
+     */
     private UndoableStringBuilder condition;
+
+    /**
+     * list that hold all members that regeistered for GA
+     */
     private ArrayList<Member> members;
 
+    /**
+     * defult constructor
+     */
     public GroupAdmin() {
         this.members = new ArrayList<>();
         this.condition = new UndoableStringBuilder();
     }
 
     /**
-     *
+     * this function is registering member to GA
      * @param obj describe the member that register to the members collections, this is like hiring a new worker
      *            to a company so, he needs to register to the company.
      */
@@ -32,7 +42,7 @@ public class GroupAdmin implements Sender{
     }
 
     /**
-     *
+     * this function is removing member from registered list of GA
      * @param obj describe the member that will be removed from the members collections, this is like firing
      *            a worker from a company.
      */
@@ -45,7 +55,7 @@ public class GroupAdmin implements Sender{
     }
 
     /**
-     *
+     * this function inserts to GA's USB string in index offset
      * @param offset describe the index that the user start to insert the new String object in.
      * @param obj describe the String object that the user insert in index "offset" until the String object end.
      */
@@ -56,7 +66,7 @@ public class GroupAdmin implements Sender{
     }
 
     /**
-     *
+     * this function appends to GA's USB string
      * @param obj describe the String Object the user want to append to exist UndoableStringBuilder and,
      *            the for loop notifying all members to update themselves due to appending String object to the current
      *            UndoableStringBuilder.
@@ -67,7 +77,7 @@ public class GroupAdmin implements Sender{
         notifyMember();
     }
     /**
-     *
+     * this function deletes sub-string of GA's USB' string
      * @param start describe the index that the user start to delete the UndoableStringBuilder.
      * @param end describe the index(not included) the user stop deleting the string(until index end-1)
      *            The for loop notifying all members to update themselves due to deletion some part of
@@ -81,6 +91,7 @@ public class GroupAdmin implements Sender{
     }
 
     /**
+     * this function undos the last operation from GA's USB's string
      * An undo function that give the latest change in the UndoableStringBuilder object and update
      * all members UndoableStringBuilder to the current one.
      */
@@ -89,15 +100,29 @@ public class GroupAdmin implements Sender{
         condition.undo();
         notifyMember();
     }
+
+    /**
+     * this function is notifying all members in the list about a change that happen,
+     *      so they could update accordingly
+     */
     private void notifyMember() {
         for (Member member : members){
             member.update(condition);
         }
     }
+
+    /**
+     * standart get method for list of members
+     * @return the GA's array list of regeistered members
+     */
     public ArrayList<Member> getMembers() {
-        return members;
+        return this.members;
     }
 
+    /**
+     * standart get method for USB
+     * @return the GA's USB 
+     */
     public UndoableStringBuilder getCondition() {
         return condition;
     }
