@@ -1,66 +1,71 @@
 # Object Oriented Programming - Second Assignment
-This assignment is about Observer design pattern with the use of UndoableStringBuilder - an object that we created that is similar to StringBuilder.
-We have a GroupAdmin class that will be the Observable Class and ConcreteMember class that will be the Observer Class and 2 interfaces: Member and Sender.
-### GroupAdmin Observable Class:
-**Class Fields:** UndoableStringBuilder and an arraylist that holds the members that registered to the groupadmin observable.
 
-**Constructor:** We build a default constructor that initialize the arraylist and the UndoableStringBuilder.
+Authors: Avraham Rahimov & Lior Vinman
 
-**Functions:**
+This project is about _Observer design pattern_ with the use of UndoableStringBuilder (_"USB"_) - an object that we created that is an extention for JAVA's standart stringbuilder object, the update is in extended object, there is an option to undo the last operation (undoable) that was performed on the stringBuilder.
 
-1)The register function is about registering new member to the collections of members that the groupadmin holds, only a new member will be added, there is no duplicates.
 
-2)The unregister function is about unregistering an existing member.
+We have a GroupAdmin (_"GA"_) class that will be the Observable Class and ConcreteMember (_"CM"_) class that will be the Observer Class. In addition, there are two interfaces that are Member and Sender, GroupAdmin class implements the Sender and ConcreteMember class implements the Member.
 
-3)The insert function insert a string to the UndoableStringBuilder of the class and notify the members about the change so, the members can update themselves.
+## Functional Classes:
 
-4)The append function is adding string to the end of existing string of all UndoableStringBuilder objects, then notifying all members about the change.
+### GroupAdmin - Observable:
+**Class Fields:**
+UndoableStringBuilder object - "condition", that represents the USB of the current object; and an arraylist of type Member - "members", that holds the CMs that registered to GA.
 
-5)The delete function deletes some part in the UndoableStringBuilder and notify the members about the change so, the members can update themselves.
+**Object's Constructor:**
+There is a default constructor that initialize the arraylist and the UndoableStringBuilder.
 
-6)The undo function is undoing the last operation that has been done on all UndoableStringBuilder objects, then notifying all members about the change.
+**Class Methods:**
 
-7)The notifyMember function run over all the members and notify them to update themselves according to the changes of the UndoableStringBuilder.
-We also set getters and setters to the arraylist of members and to the UndoableStringBuilder so we can access them in different class.
+1) _void register(Member)_ - this method is about registering new member to the collections of members that the GA holds, only a new member will be added, there is no duplicates.
+2) _void unregister(Member)_ - this method is about unregistering an existing member from the list.
+3) _void insert(int, String)_ - this method inserts a string to the USB of the class and notify the members about the change, so they can update themselves.
+4) _void append(String)_ - this method is adding string to the end of existing string of all USB objects, then notifying all members about the change.
+5) _void delete(int, int)_ - this method deletes a part from the USB and then notifying the members about the change, so they can update themselves.
+6) _void undo()_ - this method is undoing the last operation that has been done on all USB objects, then notifying all members about the change.
+7) _void notifyAll()_ - this method run over all the members and notify them to update themselves according to the changes of the UndoableStringBuilder.
 
-### ConcreteMember Observer Class:
-**Class Fields:** UndoableStringBuilder that points <sub>shallow copy</sub> to the UndoableStringBuilder of GroupAdmin and a string name that will be the name of the member.
+there are also, _getters_ for class fields:
+1) _ArrayList<Member> getMembers()_ - returns the list of members that GA holds.
+2) _UndoableStringBuilder getCondition()_ - returns the USB object that GA holds.
+  
+There are no _setters_!
+  
+### ConcreteMember - Observer:
+**Class Fields:**
+UndoableStringBuilder object - "stringBuilder", that that points (_i.e. shallow copy_) to the UndoableStringBuilder of GroupAdmin; and a string - "member_name" that will be the name of the member.
 
-**Constructor:** We build a constructor that receives a string name to set the name of the member and initiallize the UndoableStringBuilder.
+**Object's Constructor:**
+There is a constructor that receives a string name to set the name of the member and initiallize the UndoableStringBuilder.
 
-**Functions**
-1)The update function updates all the members to the current UndoableStringBuilder of groupadmin.
+**Class Methods:**
+1) _void update(UndoableStringBuilder)_ - this method updates all the members to the current USB of GA.
+2) _String toString()_ - this method returns a string of object's fields.
 
-2)The toString function to print the ConcreteMember name and the the current UndoableStringBuilder.
+there is also, _getter_ for class field:
+1) _UndoableStringBuilder getUSB()_ - returns the the current's object's UndoableStringBuilder.
 
-3)The getUSB function is standard get method which returns the current's object's UndoableStringBuilder.
+There are no _setters_!
 
-## Testing Classes
+## Testing Classes:
 
-### ConcreteMemberTest
+### ConcreteMemberTest:
 
-**Functions**
-
-1)The update function is a TEST method for update() method in Concrete Member class
+**TEST Methods:**
+1) _void update()_ - test method for _update()_ method in CM class.
 
 ### GroupAdminTest
 
-**Functions:**
-
-1)The register function is a TEST method for register() method in Group Admin class, which registers 10 members to group admin and then check if they are registered successfully
-
-2)The unregister function is a TEST method for unregister() method in Group Admin class, which registers 4 members to group admin and then unregisters them and checks if unregistered successfully
-
-3)The insert function is a TEST method for insert() method in Group Admin class, which inserting and checking if inserted as well
-
-4)The append function is a TEST method for append() method in Group Admin class, which registers 4 members to group admin and then appending them and checks if appended successfully
-
-5)The delete function is a TEST method for delete() method in Group Admin class, which deleting and checking if deleted as well
-
-6)The undo function is a TEST method for undo() method in Group Admin class, which perform 5 actions on Group Admin and then udoing 4 of them and checking if we get only the first operation
-
+**TEST Methods:**
+1) _void register()_ - test method for _regeiser()_ method in GA class.
+2) _void unregister()_ - test method for _unregeiser()_ method in GA class.
+3) _void insert()_ - test method for _insert()_ method in GA class.
+4) _void append()_ - test method for _append()_ method in GA class.
+5) _void delete()_ - test method for _delete()_ method in GA class.
+6) _void undo()_ - test method for _undo()_ method in GA class.
 
 ## How to use
-To clone this project all you need to do is to copy the [project URL](https://github.com/AviRahimov/OOP_Assignment2.git) to git bash and to change the current working directory to the location where you want the cloned directory.
-
-type: git clone https://github.com/AviRahimov/OOP_Assignment2.git and then the cloning proccess will start.
+To clone this project all you need to do is to copy the [_project URL_](https://github.com/AviRahimov/OOP_Assignment2.git) to git bash and to change the current working directory to the location where you want the cloned directory.
+  
+Using the command: _"git clone https://github.com/AviRahimov/OOP_Assignment2.git <location-to-clone>"_, then the cloning proccess will start.
