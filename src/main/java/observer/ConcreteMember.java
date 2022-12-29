@@ -27,7 +27,7 @@ public class ConcreteMember implements Member{
     @Override
     public String toString() {
         return "ConcreteMember{" + "name=" + member_name +
-                "stringBuilder=" + stringBuilder +
+                ", stringBuilder=" + stringBuilder +
                 '}';
     }
 
