@@ -61,3 +61,6 @@ We also set getters and setters to the arraylist of members and to the UndoableS
 
 
 ## How to use
+To clone this project all you need to do is to copy the [project URL](https://github.com/AviRahimov/OOP_Assignment2.git) to git bash and to change the current working directory to the location where you want the cloned directory.
+
+type: git clone https://github.com/AviRahimov/OOP_Assignment2.git and then the cloning proccess will start.
